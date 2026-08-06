@@ -1,0 +1,271 @@
+body {
+    margin: 0;
+    background: #f5f5f5;
+    font-family: sans-serif;
+    color: #222;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+.pageHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 15px 20px;
+
+    background: white;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pageHeader h1 {
+    margin: 0;
+    font-size: 25px;
+}
+
+.backButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    background: none;
+
+    cursor: pointer;
+}
+
+.backButton .material-symbols-outlined {
+    font-size: 32px;
+}
+
+.mealEditMain {
+    max-width: 800px;
+    margin: 25px auto;
+    padding: 0 18px 40px;
+}
+
+.formSection {
+    margin-bottom: 20px;
+    padding: 22px;
+
+    background: white;
+
+    border-radius: 16px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.formGroup {
+    margin-bottom: 20px;
+}
+
+.formGroup:last-child {
+    margin-bottom: 0;
+}
+
+.formGroup label,
+.recipeFoodArea label,
+.customFoodArea label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-weight: bold;
+}
+
+.formGroup input,
+.formGroup select,
+.recipeSelect,
+.customFoodInput {
+    box-sizing: border-box;
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+
+    background: white;
+}
+
+.sectionTitleArea {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin-bottom: 18px;
+}
+
+.sectionTitleArea h2 {
+    margin: 0;
+}
+
+.addFoodButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+    padding: 9px 13px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #e8f5e9;
+    color: #2e7d32;
+
+    cursor: pointer;
+}
+
+.foodCard {
+    margin-bottom: 18px;
+    padding: 18px;
+
+    border: 1px solid #e0e0e0;
+    border-radius: 14px;
+
+    background: #fafafa;
+}
+
+.foodCard:last-child {
+    margin-bottom: 0;
+}
+
+.foodCardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+}
+
+.foodCardHeader h3 {
+    margin: 0;
+}
+
+.removeFoodButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #ffebee;
+    color: #c62828;
+
+    cursor: pointer;
+}
+
+.foodTypeTabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    margin-bottom: 18px;
+
+    border: 1px solid #4caf50;
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.foodTypeButton {
+    padding: 11px;
+
+    border: none;
+
+    background: white;
+    color: #2e7d32;
+
+    cursor: pointer;
+}
+
+.foodTypeButton.active {
+    background: #4caf50;
+    color: white;
+}
+
+.recipeFoodArea,
+.customFoodArea {
+    margin-top: 10px;
+}
+
+.saveButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    width: 100%;
+
+    padding: 16px;
+
+    border: none;
+    border-radius: 13px;
+
+    background: #4caf50;
+    color: white;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.saveButton:hover {
+    background: #43a047;
+}
+
+.messageText {
+    min-height: 24px;
+
+    margin: 10px 0;
+
+    text-align: center;
+    font-weight: bold;
+}
+
+.errorMessage {
+    color: #c62828;
+}
+
+.successMessage {
+    color: #2e7d32;
+}
+
+@media (max-width: 600px) {
+    .pageHeader {
+        padding: 14px;
+    }
+
+    .pageHeader h1 {
+        font-size: 21px;
+    }
+
+    .mealEditMain {
+        margin-top: 18px;
+        padding: 0 12px 30px;
+    }
+
+    .formSection {
+        padding: 17px;
+    }
+
+    .sectionTitleArea {
+        align-items: flex-start;
+    }
+
+    .addFoodButton {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>レシピ管理アプリ</title>
+    <link rel ="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>レシピ管理アプリ</h1>
+    </header>
+
+    <section class="calendar">
+
+        <h2 id="todayText"></h2>
+
+        <div class="week" id="weekCalendar"></div>
+    </section>
+
+    <main>
+
+        <button class="menuButton" id="mealListButton">
+            <span class="material-symbols-outlined">
+                calendar_meal
+            </span>
+            <br>
+            献立カレンダー
+        </button>
+
+        <button class="menuButton" id="recipeListButton">
+            <span class="material-symbols-outlined">
+                menu_book
+            </span>            
+            <br>
+            レシピ一覧
+        </button>
+
+        <button class="menuButton" id="recipeAddButton">
+            <span class="material-symbols-outlined">
+                add
+            </span>
+            <br>
+            レシピ追加
+        </button>
+
+        <button
+            class="menuButton"
+            id="photoListButton"
+        >
+            <span class="material-symbols-outlined">
+                photo
+            </span>
+            <br>
+            写真一覧
+        </button>
+
+        <button
+            class="menuButton"
+            id="backupButton"
+        >
+            <span class="material-symbols-outlined">
+                settings_backup_restore
+            </span>
+            <br>
+            バックアップ・復元
+        </button>
+
+    </main>
+
+    <script src="js/script.js"></script>
+    
+</body>
+
+</html>

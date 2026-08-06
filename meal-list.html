@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>献立カレンダー</title>
+
+    <link rel="stylesheet" href="css/meal-list.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="pageHeader">
+
+        <button id="backButton" class="backButton">
+            <span class="material-symbols-outlined">
+                arrow_back
+            </span>
+        </button>
+
+        <h1>献立カレンダー</h1>
+
+    </header>
+
+    <main>
+
+        <div class="dateArea">
+
+            <button id="prevDateButton">
+                <span class="material-symbols-outlined">
+                    chevron_left
+                </span>
+            </button>
+
+            <input
+                type="date"
+                id="mealDate">
+
+            <button id="nextDateButton">
+                <span class="material-symbols-outlined">
+                    chevron_right
+                </span>
+            </button>
+
+        </div>
+        <p id="todayLabel" class="todayLabel"></p>
+
+        <div id="mealListContainer">
+
+        </div>
+
+        <button
+            id="addMealButton"
+            class="floatingButton">
+
+            <span class="material-symbols-outlined">
+                add
+            </span>
+
+        </button>
+
+    </main>
+
+    <script src="js/meal-list.js"></script>
+
+</body>
+
+</html>

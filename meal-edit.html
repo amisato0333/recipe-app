@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>献立追加・編集</title>
+
+    <link
+        rel="stylesheet"
+        href="css/meal-edit.css"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+    <header class="pageHeader">
+        <button
+            id="backButton"
+            class="backButton"
+            type="button"
+        >
+            <span class="material-symbols-outlined">
+                arrow_back
+            </span>
+        </button>
+
+        <h1 id="pageTitle">献立を追加</h1>
+    </header>
+
+    <main class="mealEditMain">
+
+        <form id="mealForm">
+
+            <section class="formSection">
+
+                <div class="formGroup">
+                    <label for="mealDate">
+                        日付
+                    </label>
+
+                    <input
+                        type="date"
+                        id="mealDate"
+                        required
+                    >
+                </div>
+
+                <div class="formGroup">
+                    <label for="mealType">
+                        食事区分
+                    </label>
+
+                    <select
+                        id="mealType"
+                        required
+                    >
+                        <option value="朝食">
+                            朝食
+                        </option>
+
+                        <option value="昼食">
+                            昼食
+                        </option>
+
+                        <option value="夕食">
+                            夕食
+                        </option>
+
+                        <option value="間食">
+                            間食
+                        </option>
+
+                        <option value="その他">
+                            その他
+                        </option>
+                    </select>
+                </div>
+
+                <div class="formGroup">
+                    <label for="mealTime">
+                        時間
+                    </label>
+
+                    <input
+                        type="time"
+                        id="mealTime"
+                    >
+                </div>
+
+            </section>
+
+            <section class="formSection">
+
+                <div class="sectionTitleArea">
+                    <h2>料理</h2>
+
+                    <button
+                        id="addFoodButton"
+                        class="addFoodButton"
+                        type="button"
+                    >
+                        <span class="material-symbols-outlined">
+                            add
+                        </span>
+
+                        料理を追加
+                    </button>
+                </div>
+
+                <div id="foodContainer"></div>
+
+            </section>
+
+            <p
+                id="messageText"
+                class="messageText"
+            ></p>
+
+            <button
+                id="saveButton"
+                class="saveButton"
+                type="submit"
+            >
+                <span class="material-symbols-outlined">
+                    save
+                </span>
+
+                保存
+            </button>
+
+        </form>
+
+    </main>
+
+    <template id="foodItemTemplate">
+
+        <div class="foodCard">
+
+            <div class="foodCardHeader">
+
+                <h3 class="foodNumber">
+                    料理
+                </h3>
+
+                <button
+                    class="removeFoodButton"
+                    type="button"
+                >
+                    <span class="material-symbols-outlined">
+                        close
+                    </span>
+                </button>
+
+            </div>
+
+            <div class="foodTypeTabs">
+
+                <button
+                    class="foodTypeButton active"
+                    data-type="recipe"
+                    type="button"
+                >
+                    レシピから選ぶ
+                </button>
+
+                <button
+                    class="foodTypeButton"
+                    data-type="custom"
+                    type="button"
+                >
+                    直接入力
+                </button>
+
+            </div>
+
+            <div class="recipeFoodArea">
+
+                <label>
+                    レシピ
+                </label>
+
+                <select class="recipeSelect">
+                    <option value="">
+                        レシピを選択してください
+                    </option>
+                </select>
+
+            </div>
+
+            <div
+                class="customFoodArea"
+                hidden
+            >
+
+                <label>
+                    料理名
+                </label>
+
+                <input
+                    type="text"
+                    class="customFoodInput"
+                    placeholder="例：コンビニのおにぎり"
+                >
+
+            </div>
+
+        </div>
+
+    </template>
+
+    <script src="js/meal-edit.js"></script>
+
+</body>
+
+</html>

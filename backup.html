@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>バックアップ・復元</title>
+
+    <link rel="stylesheet" href="css/backup.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+    <header class="pageHeader">
+        <button id="backButton" class="backButton">
+            <span class="material-symbols-outlined">
+                arrow_back
+            </span>
+        </button>
+
+        <h1>バックアップ・復元</h1>
+    </header>
+
+    <main class="backupMain">
+
+        <section class="backupSection">
+            <h2>バックアップ</h2>
+
+            <p>
+                保存しているレシピや献立のデータを、
+                JSONファイルとして保存します。
+            </p>
+
+            <button id="exportButton" class="actionButton">
+                <span class="material-symbols-outlined">
+                    download
+                </span>
+
+                バックアップを保存
+            </button>
+        </section>
+
+        <section class="backupSection">
+            <h2>復元</h2>
+
+            <p>
+                JSONファイルを選択して、
+                保存データを復元します。
+            </p>
+
+            <p class="warningText">
+                ※現在のデータは、バックアップの内容に置き換わります。
+            </p>
+
+            <input
+                type="file"
+                id="restoreFileInput"
+                accept=".json,application/json"
+                hidden
+            >
+
+            <button id="selectFileButton" class="actionButton">
+                <span class="material-symbols-outlined">
+                    upload_file
+                </span>
+
+                バックアップファイルを選ぶ
+            </button>
+
+            <p id="selectedFileName" class="selectedFileName">
+                ファイルは選択されていません
+            </p>
+
+            <button
+                id="restoreButton"
+                class="actionButton restoreButton"
+                disabled
+            >
+                <span class="material-symbols-outlined">
+                    settings_backup_restore
+                </span>
+
+                復元する
+            </button>
+        </section>
+
+        <p id="messageText" class="messageText"></p>
+
+    </main>
+
+    <script src="js/backup.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,386 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    min-height: 100vh;
+
+    background-color: #fffaf7;
+    color: #3e342f;
+
+    font-family: 
+        -apple-system, 
+        BlinkMacSystemFont, 
+        "Segoe UI", 
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        sans-serif;
+}
+
+/* ヘッダー */
+.page-header{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    display: grid;
+    grid-template-columns: 44px 1fr 44px;
+    align-items: center;
+
+    min-height: 64px;
+    padding: 8px 16px;
+
+    background-color: #ffffff;
+    border-bottom: 1px solid #eee3dc;
+}
+
+.page-header h1{
+    margin: 0;
+
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.back-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    color: #66544b;
+    text-decoration: none;
+    font-size: 27px;
+
+    border-radius: 50%;
+}
+
+.back-button:hover{
+    background-color: #f8efea;
+}
+
+.header-space{
+    width: 40px;
+    height: 40px;
+}
+
+/* メイン */
+.recipe-detail-main{
+    width: min(100%, 720px);
+    margin: 0 auto;
+    padding: 24px 16px 80px;
+}
+
+/* タイトル */
+.title-section{
+    margin-bottom: 22px;
+}
+
+.recipe-title{
+    margin: 0 0 12px;
+
+    font-size: 27px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.recipe-tag{
+    display: inline-block;
+
+    padding: 6px 13px;
+
+    background-color: #f1e3da;
+    border-radius: 999px;
+
+    color: #77594a;
+    font-size: 14px;
+}
+
+/* 各項目 */
+.detail-section{
+    margin-bottom: 30px;
+}
+
+.section-title{
+    margin: 0 0 14px;
+    padding-bottom: 8px;
+
+    font-size: 19px;
+
+    border-bottom: 2px solid #d8b9a7;
+}
+
+/* 写真 */
+.image-viewer{
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    aspect-ratio: 16 / 10;
+
+    background-color: #eee8e4;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.recipe-image{
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.image-arrow{
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+    padding: 0;
+
+    transform: translateY(-50%);
+
+    background-color: rgba(255, 255, 255, 0.85);
+    border: none;
+    border-radius: 50%;
+
+    color: #5e4e46;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.image-arrow-left{
+    left: 10px;
+}
+
+.image-arrow-right{
+    right: 10px;
+}
+
+.image-arrow:hover{
+    background-color: #ffffff;
+}
+
+.image-arrow[hidden]{
+    display: none;
+}
+
+.image-count{
+    margin: 8px 0 0;
+
+    color: #8c7b72;
+    text-align: center;
+    font-size: 13px;
+}
+
+/* 材料 */
+.ingredient-list{
+    margin: 0;
+    padding: 0;
+
+    background-color: #ffffff;
+    border: 1px solid #eadfd9;
+    border-radius: 12px;
+
+    list-style: none;
+    overflow: hidden;
+}
+
+.ingredient-item{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding: 14px 16px;
+}
+
+.ingredient-item + .ingredient-item{
+    border-top: 1px solid #eee6e1;
+}
+
+.ingredient-name{
+    flex: 1;
+    overflow-wrap: anywhere;
+}
+
+.ingredient-amount{
+    flex-shrink: 0;
+
+    color: #75665e;
+    text-align: right;
+}
+
+/*作り方*/
+.step-list{
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+    counter-reset: recipe-step;
+}
+
+.step-item{
+    position: relative;
+
+    min-height: 48px;
+    margin-bottom: 14px;
+    padding: 13px 15px 13px 54px;
+
+    background-color: #ffffff;
+    border: 1px solid #eadfd9;
+    border-radius: 12px;
+
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+
+    white-space: pre-wrap;
+
+    counter-increment: recipe-step;
+}
+
+.step-item::before{
+    content: counter(recipe-step);
+
+    position: absolute;
+    top: 11px;
+    left: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+
+    background-color: #a87962;
+    border-radius: 50%;
+
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* 空欄メッセージ */
+.empty-section-message{
+    margin: 0;
+    padding: 18px;
+
+    background-color: #ffffff;
+    border: 1px solid #eadfd9;
+    border-radius: 12px;
+
+    color: #8b7b73;
+    text-align: center;
+}
+
+/*ボタン*/
+.action-buttons{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+
+    margin-top: 42px;
+}
+
+.edit-button, 
+.delete-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 48px;
+    padding: 12px 16px;
+
+    border-radius: 11px;
+
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.edit-button{
+    background-color: #9c6f59;
+    border: 1px solid #9c6f59;
+
+    color: #ffffff;
+}
+
+.delete-button{
+    background-color: #ffffff;
+    border: 1px solid #ba6f6f;
+
+    color: #a25353;
+}
+
+.edit-button:hover,
+.delete-button:hover{
+    opacity: 0.84;
+}
+
+/* 見つからない場合 */
+.not-found-message{
+    padding: 70px 20px;
+
+    color: #75675f;
+    text-align: center;
+}
+
+.not-found-message h2{
+    margin: 15px 0 8px;
+
+    color: #4b3e38;
+    font-size: 21px;
+}
+
+.not-found-message p{
+    line-height: 1.7;
+}
+
+.not-found-icon{
+    margin: 0;
+
+    font-size: 46px;
+}
+
+.list-link{
+    display: inline-block;
+
+    margin-top: 20px;
+    padding: 12px 20px;
+
+    background-color: #9c6f59;
+    border-radius: 10px;
+
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+@media(max-width:480px){
+    .recipe-detail-main{
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .recipe-title{
+        font-size: 24px;
+    }
+
+    .action-buttons{
+        grid-template-columns: 1fr;
+    }
+}

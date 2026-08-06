@@ -1,0 +1,341 @@
+/* =========================
+   全体設定
+========================= */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: #f7f7f7;
+    font-family: sans-serif;
+}
+
+/* =========================
+   ヘッダー
+========================= */
+header{
+    background: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* =========================
+   ホーム画面：カレンダー
+========================= */
+.calendar{
+    margin:20px;
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.week{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.week div{
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+.today{
+    background: #4ca3af;
+    color:white;
+}
+
+/* =========================
+   ホーム画面：メニューボタン
+========================= */
+main{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 20px;
+    gap: 0;
+    border: 1px solid #333;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 20px;
+    background: white;
+}
+
+.menuButton{
+    height: 150px;
+    border: 1px solid #333;
+    border-radius: 0;
+    background: white;
+    font-size: 20px;
+    box-shadow: none;
+}
+
+.menuButton:hover{
+    transform: none;
+    background: #f3f8f3;
+}
+
+.menuButton:active{
+    transform: scale(0.98);
+}
+.material-symbols-outlined{
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+/* =========================
+   レシピ追加画面：全体
+========================= */
+.backButton{
+    display: block;
+    text-align: left;
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.addPage{
+    display: block;
+    margin: 20px;
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
+.formCard{
+    background: white;
+    border: 1px solid #333;
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.formCard label{
+    display: block;
+    font-weight: bold;  
+    margin-top: 16px;
+    margin-bottom: 6px;
+}
+
+.formCard input,
+.formCard textarea{
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #aaa;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+/* =========================
+   レシピ追加画面：写真
+========================= */
+.imageUploadBox{
+    border: 1px dashed #555;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.imageUploadBox input{
+    display: none;
+}
+
+.imageUploadBox .material-symbols-outlined{
+    font-size: 32px;
+    margin-bottom: 24px;
+}
+
+/* =========================
+   写真カルーセル
+========================= */
+
+.imagePreviewArea{
+    width: 100%;
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
+.imageCarousel{
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    aspect-ratio: 16 / 9;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f7f7f7;
+}
+
+.imageCarousel img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   
+}
+
+/* 左右の矢印 */
+.imageNavButton{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 8%;
+    height: 54%;
+    padding: 0;
+
+    border: none;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.6);
+    
+    font-size: 30px;
+    line-height: 1;
+
+    cursor: pointer;
+    z-index: 5;
+
+    opacity: 0;
+    transition: opacity 0.2s, background 0.2s;
+}
+
+.imageCarousel:hover .imageNavButton{
+    opacity: 1;
+}
+
+.imageNavButton:hover{
+    background:rgba(255,255,255,0.9);
+}
+
+.imagePrevButton{
+    left: 10px;
+}
+
+.imageNextButton{
+    right: 10px;
+}
+
+@media(hover: none){
+    .imageNavButton{
+        opacity: 1;
+    }
+}
+
+/* 写真削除ボタン */
+
+.imageDeleteButton{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 1px solid #333;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 6;
+}
+
+/* 1 / 3 の表示 */
+
+.imageCount{
+    position: absolute;
+    bottom: 8px;
+    right: 12px;
+    background: white;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 14px;
+}
+
+/* =========================
+   レシピ追加画面：材料
+========================= */
+.ingredientRow{
+    display: grid;
+    grid-template-columns: 1fr 100px 44px;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+/* =========================
+   レシピ追加画面：作り方
+========================= */
+.stepRow{
+    display: grid;
+    grid-template-columns: 1fr 44px;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.stepInput{
+    min-height: 90px;
+}
+
+/* =========================
+   レシピ追加画面：タグ
+========================= */
+.tagArea{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.tagArea label{
+    border: 1px solid #aaa;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 0;
+    font-weight: normal;
+}
+
+/* =========================
+   ボタン共通
+========================= */
+.smallButton,
+.saveButton {
+    width: 100%;
+    margin-top: 12px;
+    padding: 14px;
+    font-size: 16px;
+    border: 1px solid #333;
+    border-radius: 12px;
+    background: white;
+}
+
+.saveButton {
+    margin-top: 24px;
+    background: #f1f8f1;
+    font-weight: bold;
+}
+
+.deleteButton {
+    border: 1px solid #333;
+    border-radius: 8px;
+    background: white;
+    font-size: 20px;
+    cursor: pointer;
+}

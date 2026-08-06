@@ -1,0 +1,285 @@
+body{
+    margin:0;
+    background:#f5f5f5;
+    font-family:sans-serif;
+}
+
+.pageHeader{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    background:white;
+
+    padding:15px;
+
+    box-shadow:0 2px 6px rgba(0,0,0,.1);
+
+}
+
+.backButton{
+
+    border:none;
+    background:none;
+    cursor:pointer;
+
+}
+
+.backButton .material-symbols-outlined{
+
+    font-size:32px;
+
+}
+
+.dateArea{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+
+    margin:20px;
+
+}
+
+.dateArea button{
+
+    width:44px;
+    height:44px;
+    border:none;
+    background:white;
+    cursor:pointer;
+
+    border-radius:10px;
+
+    padding:8px;
+
+}
+
+#mealDate{
+
+    font-size:16px;
+    padding:8px;
+
+}
+
+#mealListContainer{
+
+    max-width:900px;
+
+    margin:auto;
+
+    padding:15px;
+
+}
+
+.mealCard{
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    margin-bottom:15px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+
+}
+
+.floatingButton{
+
+    position:fixed;
+
+    right:25px;
+    bottom:25px;
+
+    width:65px;
+    height:65px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#4CAF50;
+
+    color:white;
+
+    cursor:pointer;
+
+    box-shadow:0 4px 10px rgba(0,0,0,.25);
+
+}
+
+.floatingButton .material-symbols-outlined{
+
+    font-size:36px;
+
+}
+
+.mealCardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mealTitleArea {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mealTitleArea h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.mealIcon {
+    font-size: 28px;
+}
+
+.emptyMealText {
+    margin: 18px 0 0;
+    color: #777;
+}
+
+.mealContent {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.mealTime {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    margin: 0 0 10px;
+
+    font-weight: bold;
+    color: #555;
+}
+
+.mealTime .material-symbols-outlined {
+    font-size: 20px;
+}
+
+.foodList {
+    margin: 0;
+    padding-left: 24px;
+}
+
+.foodItem {
+    margin-bottom: 8px;
+}
+
+.recipeLabel {
+    display: inline-block;
+
+    margin-left: 10px;
+    padding: 3px 8px;
+
+    border-radius: 20px;
+
+    background: #e8f5e9;
+    color: #2e7d32;
+
+    font-size: 12px;
+}
+
+.mealButtonArea {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    margin-top: 15px;
+}
+
+.editMealButton,
+.deleteMealButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+    padding: 8px 14px;
+
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.editMealButton {
+    background: #eeeeee;
+    color: #333;
+}
+
+.deleteMealButton {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.editMealButton .material-symbols-outlined,
+.deleteMealButton .material-symbols-outlined {
+    font-size: 19px;
+}
+
+.dateArea button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#mealDate {
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    background: white;
+}
+
+@media (max-width: 600px) {
+    .pageHeader h1 {
+        font-size: 21px;
+    }
+
+    .dateArea {
+        margin: 16px 8px;
+        gap: 6px;
+    }
+
+    #mealDate {
+        max-width: 160px;
+    }
+
+    .mealCard {
+        padding: 17px;
+    }
+}
+
+.emptyMealCard {
+    cursor: pointer;
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+.emptyMealCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+}
+
+.emptyMealCard:active {
+    transform: translateY(0);
+}
+
+.todayLabel {
+    min-height: 24px;
+    margin: -10px 0 5px;
+
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+
+    color: #2e7d32;
+}

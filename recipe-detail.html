@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>レシピ詳細</title>
+
+    <link
+        rel="stylesheet"
+        href="css/recipe-detail.css"
+    >
+</head>
+
+<body>
+    <header class="page-header">
+        <a
+            href="recipe-list.html"
+            class="back-button"
+            aria-label="レシピ一覧に戻る"
+            >
+            ←
+        </a>
+
+        <h1>レシピ詳細</h1>
+
+        <div class="header-space"></div>
+    </header>
+
+    <main class="recipe-detail-main">
+        <!--レシピが見つかった場合-->
+        <article id="recipe-detail" class="recipe-detail" hidden>
+            <section class="title-section">
+                <h2 id="recipe-title" class="recipe-title"></h2>
+
+                <span id="recipe-tag" class="recipe-tag"></span>
+            </section>
+
+            <!--写真-->
+            <section
+                id="image-section"
+                class="detail-section"
+                hidden
+            >
+                <div id="image-viewer" class="image-viewer">
+                    <button
+                        type="button"
+                        id="previous-image-button"
+                        class="image-arrow image-arrow-left"
+                        aria-label="前の写真"
+                    >
+                        ‹
+                    </button>
+
+                    <img
+                        id="recipe-image"
+                        class="recipe-image"
+                        src=""
+                        alt=""
+                    >
+
+                    <button
+                        type="button"
+                        id="next-image-button"
+                        class="image-arrow image-arrow-right"
+                        aria-label="次の写真"
+                    >
+                        ›
+                    </button>
+                </div>
+
+                <p
+                    id="image-count"
+                    class="image-count"
+                ></p>
+            </section>
+
+            <!--材料-->
+            <section class="detail-section">
+                <h3 class="section-title">材料</h3>
+
+                <ul
+                    id="ingredient-list"
+                    class="ingredient-list"
+                ></ul>
+
+                <p
+                    id="ingredient-empty-message"
+                    class="empty-section-message"
+                    hidden
+                >
+                    材料は登録されていません
+                </p>
+            </section>
+
+            <!--作り方-->
+            <section class="detail-section">
+                <h3 class="section-title">作り方</h3>
+
+                <ol
+                    id="step-list"
+                    class="step-list"
+                ></ol>
+
+                <p
+                    id="step-empty-message"
+                    class="empty-section-message"
+                    hidden
+                >
+                    作り方は登録されていません
+                </p>
+            </section>
+
+            <!--操作ボタン-->
+            <div class="action-buttons">
+                <a
+                    id="edit-button"
+                    href="#"
+                    class="edit-button"
+                >
+                    編集する
+                </a>
+
+                <button
+                    type="button"
+                    id="delete-button"
+                    class="delete-button"
+                >
+                    削除する
+                </button>
+            </div>
+        </article>
+
+        <!--該当レシピが見つからない場合-->
+        <section
+            id="not-found-message"
+            class="not-found-message"
+            hidden
+        >
+            <p class="not-found-icon">🍳</p>
+
+            <h2>レシピが見つかりませんでした</h2>
+
+            <p>
+                削除されたか、正しく保存されていない可能性があります。
+            </p>
+
+            <a
+                href="recipe-list.html"
+                class="list-link"
+            >
+                レシピ一覧に戻る
+            </a>
+        </section>
+    </main>
+
+    <script src="js/recipe-detail.js"></script>
+</body>
+</html>     

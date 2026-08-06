@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang=""ja>
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>レシピ一覧</title>
+
+    <link rel="stylesheet" href="css/recipe-list.css">
+</head>
+
+<body>
+    <header class="page-header">
+        <a href="index.html" class="back-button" aria-label="ホームに戻る">
+            ←
+        </a>
+
+        <h1>レシピ一覧</h1>
+
+        <a href="recipe-add.html" class="add-button" aria-label="レシピを追加">
+            ＋
+        </a>
+    </header>
+
+    <main class="recipe-list-main">
+        <!--検索欄-->
+        <div class="search-area">
+            <span class="search-icon">🔍</span>
+
+            <input
+                type="search"
+                id="recipe-search"
+                class="search-input"
+                placeholder="レシピ名を検索"
+                autocomplete="off"
+            >
+
+            <button
+                type="button"
+                id="clear-search-button"
+                class="clear-search-button"
+                aria-label="検索文字を消す"
+            >
+                ×
+            </button>
+        </div>
+
+        <!--保存件数-->
+        <p id="recipe-count" class="recipee-count"></p>
+
+        <!--レシピ一覧-->
+        <div id="recipe-list" class="recipe-list"></div>
+
+        <!--レシピがない場合-->
+        <div id="empty-message" class="empty-message" hidden>
+            <p class="empty-icon">🍳</p>
+            <p>保存されているレシピはありません</p>
+
+            <a href="recipeAdd.html" class="empty-add-link">
+                レシピを追加する
+            </a>
+        </div>
+
+        <!-- 検索結果がない場合 -->
+        <div id="no-result-message" class="empty-message" hidden>
+            <p class="empty-icon">🔍</p>
+            <p>該当するレシピが見つかりませんでした</p>
+        </div>
+    </main>
+
+    <script src="js/recipe-list.js"></script>
+</body>
+</html>

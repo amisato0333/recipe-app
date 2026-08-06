@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>写真一覧</title>
+
+    <link
+        rel="stylesheet" href="css/photo-list.css"
+    >
+</head>
+
+<body>
+    <header class="page-header">
+        <a 
+            href="index.html"
+            class="back-button"
+            aria-label="ホームに戻る"
+        >
+            ←
+        </a>
+
+        <h1>写真一覧</h1>
+
+        <div class="header-space"></div>
+    </header>
+
+    <main class="photo-list-main">
+        <!--検索-->
+        <div class="search-area">
+            <span
+                class="search-icon"
+                aria-hidden="true"
+            >
+                🔍
+            </span>
+
+            <input
+                type="search"
+                id="photo-search"
+                class="search-input"
+                placeholder="料理名を検索"
+                autocomplete="off"
+            >
+            
+            <button
+                type="button"
+                id="clear-search-button"
+                class="clear-search-button"
+                aria-label="検索文字を消す"
+                >
+                    ×
+            </button>
+        </div>
+
+        <!--写真件数-->
+        <p
+            id="photo-count"
+            class="photo-count"
+        ></p>
+
+        <!--写真一覧-->
+        <div
+            id="photo-grid"
+            class="photo-grid"
+        ></div>
+
+        <!--写真が１枚もない場合-->
+        <section
+            id="empty-message"
+            class="empty-message"
+            hidden
+        >
+            <p class="empty-icon">🖼️</p>
+            <h2>保存されている写真はありません</h2>
+            <p>レシピに写真を追加すると、ここに表示されます</p>
+            <a
+                href="recipeAdd.html"
+                class="add-recipe-link"
+            >
+                レシピを追加する
+            </a>
+        </section>
+
+        <!--検索結果がない場合-->
+        <section
+            id="no-result-message"
+            class="empty-message"
+            hidden
+        >
+            <p class="empty-icon">🔍</p>
+            <h2>写真が見つかりませんでした</h2>
+            <p>別の料理名で検索してください</p>
+        </section>
+    </main>
+
+    <script src="js/photo-list.js"></script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+* {
+    box-sizing: border-box
+}
+
+bobdy{
+    margin: 0;
+    min-height: 100vh;
+    background-color: #fffaf5;
+    color: #3e342f;
+    font-family: 
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        sans-serif;
+}
+
+/*ヘッダー*/
+.page-header{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    display: grid;
+    grid-template-columns: 44px 1fr 44px;
+    align-items: center;
+
+    min-height: 64px;
+    padding: 8px 16px;
+
+    background-color: #ffffff;
+    border-bottom: 1px solid #eadfd8;
+}
+
+.page-header h1{
+    margin: 0;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.back-button,
+.add-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    color: #6a5145;
+    text-decoration: none;
+    font-size: 27px;
+    line-height: 1;
+
+    border-radius: 50%;
+}
+
+.back-button:hover,
+.add-button:hover{
+    background-color: #f7eee8;
+}
+
+/*メイン*/
+.recipe-list-main{
+    width: min(100%, 720px);
+    margin: 0 auto;
+    padding: 20px 16px 80px;
+}
+
+/*検索欄*/
+.search-area{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    width: 100%;
+    padding: 4px 10px;
+
+    background-color: #ffffff;
+    border: 1px solid #dfd3cc;
+    border-radius: 12px;
+}
+
+.search-area:focus-within{
+    border-color: #b9937e;
+    box-shadow: 0 0 0 3px rgba(185, 147, 126, 0.15);
+}
+
+.search-icon{
+    flex-shrink: 0;
+    font-size: 17px;
+}
+
+.search-input{
+    flex: 1;
+    min-width: 0;
+    height: 42px;
+
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+    color: #3e342f;
+    font-size: 16px;
+}
+
+.search-input::placeholder{
+    color: #a99c94;
+}
+
+/*ブラウザ標準の検索削除ボタンを隠す*/
+.search-input::-webkit-search-cancel-button{
+    display: none;
+}
+
+.clear-search-button{
+    display: none;
+    flex-shrink: 0;
+
+    width: 30px;
+    height: 30px;
+    padding: 0;
+
+    background-color: #e7ded9;
+    border: none;
+    border-radius: 50%;
+
+    color: #66564e;
+    font-size: 19px;
+    cursor: pointer;
+}
+
+.clear-search-button.is-visible{
+    display: block;
+}
+
+/*件数*/
+.recipe-count{
+    min-height: 20px;
+    margin: 12px 4px;
+
+    color: #8c7b72;
+    font-size: 13px;
+}
+
+/*五十音グループ*/
+.recipe-group{
+    margin-bottom: 24px;
+}
+
+.recipe-group-title{
+    margin: 0;
+    padding: 8px 10px;
+
+    color: #7e5d4d;
+    font-size: 15px;
+    font-weight: 600;
+
+    background-color: #f3e8e1;
+    border-radius: 8px 8px 0 0;
+}
+
+.recipe-group-list{
+    margin: 0;
+    padding: 0;
+
+    background-color: #ffffff;
+    border: 1px solid #eadfd8;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+
+    list-style: none;
+    overflow: hidden;
+}
+
+/*レシピ1件*/
+.recipe-item + .recipe-item{
+    border-top: 1px solid #eee5df;
+}
+
+.recipe-link{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    width: 100%;
+    min-height: 58px;
+    padding: 14px 16px;
+
+    color: #3e342f;
+    text-decoration: none;
+}
+
+.recipe-link:hover{
+    background-color: #fff8f3;
+}
+
+.recipe-title{
+    flex: 1;
+    min-width: 0;
+
+    font-size: 16px;
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
+
+.recipe-arrow{
+    flex-shrink: 0;
+
+    color: #b4a59d;
+    font-size: 22px;
+}
+
+/*空の場合*/
+.empty-message{
+    margin-top: 70px;
+    padding: 24px;
+
+    color: #85766e;
+    text-align: center;
+}
+
+.empty-message p{
+    margin: 8px 0;
+}
+
+.empty-icon{
+    font-size: 42px;
+}
+
+.empty-add-link{
+    display: inline-block;
+
+    margin-top: 18px;
+    padding: 12px 22px;
+
+    background-color: #9b715d;
+    border-radius: 10px;
+
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.empty-add-link:hover{
+    opacity: 0.85;
+}
+
+@media(max-width:480px){
+    .page-header{
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .recipe-list-main{
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+}
