@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale">
+
+    <title>買い物リスト</title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+
+    <link rel="stylesheet" href="css/shopping-list.css">
+</head>
+
+<body>
+
+    <header class="pageHeader">
+        <button type="button" id="backButton" class="backButton">
+            <span class="material-symbols-outlined">
+                arrow_back
+            </span>
+        </button>
+
+        <h1>買い物リスト</h1>
+    </header>
+
+    <main>
+
+        <section class="addSection">
+
+            <label for="itemInput">買うもの</label>
+
+            <div class="inputArea">
+                <input
+                    type="text" id="itemInput"
+                    placeholder="例:玉ねぎ" autocomplete="off"
+                >
+
+                <button type="button" id="addButton">
+                    追加
+                </button>
+            </div>
+        </section>
+        
+        <section class="shoppingSection">
+
+            <p id="emptyMessage">
+                買い物リストはまだありません
+            </p>
+
+            <ul id="shoppingList"></ul>
+
+        </section>
+
+        <button
+            type="button" id="deleteCheckedButton"
+            class="deleteCheckedButton"
+        >
+            チェック済みを削除 
+        </button>
+    </main>
+
+    <script src="js/shopping-list.js"></script>
+
+</body>
+
+</html>
