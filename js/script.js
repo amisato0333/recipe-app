@@ -70,3 +70,12 @@ if (mealListButton) {
         window.location.href = "meal-list.html";
     });
 }
+
+const shoppingListButton = 
+    document.getElementById("shoppingListButton");
+
+if(shoppingListButton){
+    shoppingListButton.addEventListener("click", () =>{
+        window.location.href = "shopping-list.html";
+    });
+}
