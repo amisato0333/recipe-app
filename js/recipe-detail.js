@@ -378,6 +378,8 @@ function addIngredientsToShoppingList(){
     let shoppingList = 
         JSON.parse(localStorage.getItem("shoppingList")) || [];
 
+    let addedCount = 0;
+
     validIngredients.forEach((ingredient) =>{
 
         const name = getIngredientName(ingredient);
@@ -388,10 +390,20 @@ function addIngredientsToShoppingList(){
                 ? `${name} ${amount}`
                 : name;
 
+        const alreadyExists = shoppingList.some((item) =>{
+            return item.name === displayName;
+        });
+
+        if(alreadyExists){
+            return;
+        }
+
         shoppingList.push({
             name: displayName,
             checked: false
         });
+
+        addedCount++;
     });
 
     localStorage.setItem(
@@ -399,7 +411,16 @@ function addIngredientsToShoppingList(){
         JSON.stringify(shoppingList)
     );
 
-    alert("材料を買い物リストに追加しました");
+    if(addedCount === 0){
+        alert("すべての材料がすでに買い物リストにはいってます");
+    }else if(addedCount < validIngredients.length){
+        alert(
+            `${addedCount}件の材料を追加しました。\n` +
+            "すでに登録されている材料は追加していません"
+        );
+    }else{
+        alert("材料を買い物リストに追加しました");
+    }
 }
 
 /**
