@@ -115,3 +115,43 @@ main{
     font-weight: bold;
     cursor: pointer;
 }
+
+#shoppingList li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 10px;
+    padding: 14px;
+
+    border-radius: 10px;
+    background-color: #ffffff;
+
+    box-shadow: 0 2px 6px rgb(0 0 0 / 8%);
+}
+
+#shoppingList li input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+#shoppingList li span {
+    flex: 1;
+}
+
+.deleteButton {
+    padding: 7px 12px;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: #f3f3f3;
+    color: #555;
+
+    cursor: pointer;
+}
+
+.deleteButton:hover{
+    background-color: #e5e5e5;
+}

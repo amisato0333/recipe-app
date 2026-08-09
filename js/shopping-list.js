@@ -8,6 +8,7 @@ const addButton = document.getElementById("addButton");
 const shoppingListElement = document.getElementById("shoppingList");
 const emptyMessage = document.getElementById("emptyMessage");
 const backButton = document.getElementById("backButton");
+const deleteCheckedButton = document.getElementById("deleteCheckedButton");
 
 function saveShoppingList(){
     localStorage.setItem(
@@ -15,6 +16,18 @@ function saveShoppingList(){
         JSON.stringify(shoppingList)
     );
 }
+
+deleteCheckedButton.addEventListener("click", () => {
+
+    shoppingList = shoppingList.filter((item) => {
+        return !item.checked;
+    });
+
+    saveShoppingList();
+
+    renderShoppingList();
+
+});
 
 function renderShoppingList(){
     shoppingListElement.innerHTML = "";
@@ -26,10 +39,44 @@ function renderShoppingList(){
 
     emptyMessage.style.display = "none";
 
-    shoppingList.forEach((item) =>{
+    shoppingList.forEach((item, index) =>{
         const li = document.createElement("li");
 
-        li.textContent = item.name;
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = item.checked;
+
+        checkbox.addEventListener("change", () =>{
+
+            shoppingList[index].checked = checkbox.checked;
+
+            saveShoppingList();
+
+            renderShoppingList();
+        });
+
+        const itemName = document.createElement("span");
+        itemName.textContent = item.name;
+
+        if(item.checked){
+            itemName.style.textDecoration = "line-through";
+            itemName.style.color = "#999";
+        }
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "削除";
+        deleteButton.classList.add("deleteButton");
+
+        deleteButton.addEventListener("click", ()=>{
+            shoppingList.splice(index, 1);
+
+            saveShoppingList();
+            renderShoppingList()
+        });
+
+        li.appendChild(checkbox);
+        li.appendChild(itemName);
+        li.appendChild(deleteButton);
 
         shoppingListElement.appendChild(li);
     });
