@@ -47,6 +47,9 @@ const editButton =
 const deleteButton = 
     document.getElementById("delete-button");
 
+const addToShoppingListButton =
+    document.getElementById("addToShoppingListButton");
+
 let recipes = [];
 let selectedRecipe = null;
 let selectedRecipeIndex = -1;
@@ -353,6 +356,52 @@ function renderIngredients(){
     });
 }
 
+function addIngredientsToShoppingList(){
+    if(!selectedRecipe){
+        return;
+    }
+
+    const ingredients = 
+    Array.isArray(selectedRecipe.ingredients)
+        ? selectedRecipe.ingredients
+        : [];
+
+    const validIngredients = ingredients.filter((ingredient) =>{
+        return getIngredientName(ingredient) !=="";
+    });
+
+    if(validIngredients.length === 0){
+        alert("買い物リストに追加できる材料がありません");
+        return;
+    }
+
+    let shoppingList = 
+        JSON.parse(localStorage.getItem("shoppingList")) || [];
+
+    validIngredients.forEach((ingredient) =>{
+
+        const name = getIngredientName(ingredient);
+        const amount = getIngredientAmount(ingredient);
+
+        const displayName = 
+            amount !== ""
+                ? `${name} ${amount}`
+                : name;
+
+        shoppingList.push({
+            name: displayName,
+            checked: false
+        });
+    });
+
+    localStorage.setItem(
+        "shoppingList",
+        JSON.stringify(shoppingList)
+    );
+
+    alert("材料を買い物リストに追加しました");
+}
+
 /**
  * 作り方の文章を取り出す
  */
@@ -557,6 +606,13 @@ function initializeRecipeDetail() {
         deleteButton.addEventListener(
             "click",
             deleteSelectedRecipe
+        );
+    }
+
+    if(addToShoppingListButton){
+        addToShoppingListButton.addEventListener(
+            "click",
+            addIngredientsToShoppingList
         );
     }
 }
