@@ -384,3 +384,28 @@ body{
         grid-template-columns: 1fr;
     }
 }
+
+.addToShoppingListButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    width: 100%;
+    margin-top: 16px;
+    padding: 12px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: #f5b971;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.addToShoppingListButton .material-symbols-outlines{
+    font-size: 22px;
+}
