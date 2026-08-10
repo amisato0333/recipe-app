@@ -108,3 +108,25 @@ main{
 
     list-style: none;
 }
+
+#stockList li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 10px;
+    padding: 14px;
+
+    border-radius: 10px;
+    background-color: white;
+
+    box-shadow: 0 2px 6px rgb(0 0 0 / 8%);
+}
+
+#stockLsit li span:first-child{
+    font-weight: bold;
+}
+
+#stockList li span:last-child{
+    color: #666;
+}
