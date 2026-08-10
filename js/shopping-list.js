@@ -55,12 +55,28 @@ function renderShoppingList(){
             renderShoppingList();
         });
 
+        const itemInfo = document.createElement("div");
+        itemInfo.classList.add("itemInfo");
+
         const itemName = document.createElement("span");
+        itemName.classList.add("itemName");
         itemName.textContent = item.name;
 
         if(item.checked){
-            itemName.style.textDecoration = "line-through";
-            itemName.style.color = "#999";
+            itemName.classList.add("checked");
+        }
+
+        itemInfo.appendChild(itemName);
+
+        if(item.sourceRecipe){
+            const sourceRecipe = document.createElement("small");
+
+            sourceRecipe.classList.add("sourceRecipe");
+
+            sourceRecipe.textContent = 
+                `${item.sourceRecipe}から追加`;
+
+            itemInfo.appendChild(sourceRecipe);
         }
 
         const deleteButton = document.createElement("button");
@@ -75,7 +91,7 @@ function renderShoppingList(){
         });
 
         li.appendChild(checkbox);
-        li.appendChild(itemName);
+        li.appendChild(itemInfo);
         li.appendChild(deleteButton);
 
         shoppingListElement.appendChild(li);

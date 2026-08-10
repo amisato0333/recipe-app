@@ -4,7 +4,7 @@
 
 body{
     margin: 0;
-    background-color: #fffaf5;
+    background-color: #ffffff;
     color: #333;
     font-family: 
         "Hiragino Kaku Gothic ProN",
@@ -154,4 +154,25 @@ main{
 
 .deleteButton:hover{
     background-color: #e5e5e5;
+}
+
+.itemInfo{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.itemName{
+    font-size: 16px;
+}
+
+.itemName.checked{
+    color: #999;
+    text-decoration: line-through;
+}
+
+.sourceRecipe{
+    color: #888;
+    font-size: 12px;
 }
