@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>材料在庫管理</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="css/stock-list.css">
+</head>
+
+<body>
+    <header class="pageHeader">
+
+        <button type="button" id="backButton" class="backButton">
+            <span class="material-symbols-outlined">
+                arrow_back
+            </span>
+        </button>
+
+        <h1>材料在庫管理</h1>
+
+    </header>
+
+    <main>
+        <section class="addSection">
+            <label for="stockNameInput">材料名</label>
+
+            <input
+                type="text"
+                id="stockNameInput"
+                placeholder="例：卵"
+            >
+
+            <label for="stockAmountInput">在庫量</label>
+
+            <input
+                type="text"
+                id="stockAmountInput"
+                placeholder="例：6個"
+            >
+
+            <button type="button" id="addStockButton">
+                在庫に追加
+            </button>
+
+        </section>
+
+        <seciton class="stockSection">
+            <p id="emptyMessage">
+                登録されている在庫はありません
+            </p>
+
+            <ul id="stockList"></ul>
+        </seciton>
+
+    </main>
+
+    <script src="js/stock-list.js"></script>
+
+</body>
+
+</html>
