@@ -400,7 +400,9 @@ function addIngredientsToShoppingList(){
 
         shoppingList.push({
             name: displayName,
-            checked: false
+            checked: false,
+            sourceRecipe: getDisplayText(selectedRecipe.title) || "タイトル未設定"
+
         });
 
         addedCount++;
