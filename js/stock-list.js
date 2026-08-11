@@ -26,6 +26,8 @@ const stockListElement =
 const emptyMessage = 
     document.getElementById("emptyMessage");
 
+let editingIndex = null;
+
 /**
  * 保存用関数
  */
@@ -49,17 +51,68 @@ function renderStockList(){
 
     emptyMessage.style.display = "none";
 
-    stockList.forEach((item) =>{
+    stockList.forEach((item,index) =>{
         const li = document.createElement("li");
 
+        const itemInfo = document.createElement("div");
+        itemInfo.classList.add("stockItemInfo");
+
         const name = document.createElement("span");
+        name.classList.add("stockName");
         name.textContent = item.name;
 
         const amount = document.createElement("span");
+        amount.classList.add("stockAmount");
         amount.textContent = item.amount;
 
-        li.appendChild(name);
-        li.appendChild(amount);
+        itemInfo.appendChild(name);
+        itemInfo.appendChild(amount);
+
+        const deleteButton = document.createElement("button");
+
+        deleteButton.type = "button";
+        deleteButton.classList.add("deleteStockButton");
+        deleteButton.textContent = "削除"
+
+        deleteButton.addEventListener("click", () =>{
+            const shouldDelete = 
+                window.confirm(
+                    `${item.name}を在庫から削除しますか？`
+                );
+
+            if(!shouldDelete){
+                return;
+            }
+
+            stockList.splice(index, 1);
+
+            saveStockList();
+            renderStockList();
+        });
+
+        const editButton = document.createElement("button");
+
+        editButton.type = "button";
+        editButton.classList.add("editStockButton");
+        editButton.textContent = "編集"
+
+        editButton.addEventListener("click", () =>{
+            stockNameInput.value = item.name;
+            stockAmountInput.value = item.amount;
+
+            editingIndex = index;
+
+            addStockButton.textContent = "更新"
+        });
+
+        const buttonArea = document.createElement("div");
+        buttonArea.classList.add("stockButtonArea");
+
+        buttonArea.appendChild(editButton);
+        buttonArea.appendChild(deleteButton);
+
+        li.appendChild(itemInfo);
+        li.appendChild(buttonArea);
 
         stockListElement.appendChild(li);
     });
@@ -82,10 +135,20 @@ addStockButton.addEventListener("click", ()=>{
         return;
     }
 
-    stockList.push({
-        name: name,
-        amount: amount
-    });
+    if(editingIndex !== null){
+        stockList[editingIndex] = {
+            name: name,
+            amount: amount
+        };
+
+        editingIndex = null;
+        addStockButton.textContent = "在庫に追加";
+    }else{
+        stockList.push({
+            name: name,
+            amount: amount
+        });
+    }
 
     saveStockList();
     renderStockList();

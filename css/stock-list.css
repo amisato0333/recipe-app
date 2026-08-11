@@ -130,3 +130,55 @@ main{
 #stockList li span:last-child{
     color: #666;
 }
+
+.stockItemInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stockName{
+    font-weight: bold;
+}
+
+.stoAmount{
+    color: #666;
+    font-size: 14px;
+}
+
+.deleteStockButton{
+    padding: 8px 12px;
+
+    border: 1px solid #e5a0a0;
+    border-radius: 8px;
+
+    background-color: white;
+    color: #c65c5c;
+
+    cursor: pointer;
+}
+
+.deleteStockButton:hover{
+    background-color: #fff0f0;
+}
+
+.stockButtonArea{
+    display: flex;
+    gap: 8px;
+}
+
+.editStockButton{
+    padding: 8px 12px;
+
+    border: 1px solid #d6a55c;
+    border-radius: 8px;
+
+    background-color: white;
+    color: #a66f22;
+
+    cursor: pointer;
+}
+
+.editStockButton:hover{
+    background-color: #fff7e8;
+}
