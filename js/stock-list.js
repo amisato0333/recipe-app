@@ -105,9 +105,42 @@ function renderStockList(){
             addStockButton.textContent = "更新"
         });
 
+        const shoppingButton = document.createElement("button");
+
+        shoppingButton.type = "button";
+        shoppingButton.classList.add("shoppingStockButton");
+        shoppingButton.textContent = "買い物リストへ";
+
+        shoppingButton.addEventListener("click", () =>{
+            let shoppingList = 
+                JSON.parse(localStorage.getItem("shoppingList")) || [];
+            
+            const alreadyExists = shoppingList.some((shoppingItem) =>{
+                return shoppingItem.name === item.name;
+            });
+
+            if(alreadyExists){
+                alert(`${item.name}はすでに買い物リストに入っています`);
+                return;
+            }
+
+            shoppingList.push({
+                name: item.name,
+                checked: false,
+                sourceRecipe: "在庫管理"
+            });
+
+            localStorage.setItem(
+                "shoppingList",
+                JSON.stringify(shoppingList)
+            );
+            alert(`${item.name}を買い物リストに追加しました`);
+        });
+
         const buttonArea = document.createElement("div");
         buttonArea.classList.add("stockButtonArea");
 
+        buttonArea.appendChild(shoppingButton);
         buttonArea.appendChild(editButton);
         buttonArea.appendChild(deleteButton);
 
