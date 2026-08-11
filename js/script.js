@@ -79,3 +79,12 @@ if(shoppingListButton){
         window.location.href = "shopping-list.html";
     });
 }
+
+const stockListButton =
+    document.getElementById("stockListButton");
+
+if (stockListButton) {
+    stockListButton.addEventListener("click", () => {
+        window.location.href = "stock-list.html";
+    });
+}
