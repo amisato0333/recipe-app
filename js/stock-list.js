@@ -74,7 +74,10 @@ function renderStockList(){
         itemInfo.appendChild(name);
         itemInfo.appendChild(amount);
 
-        if (item.quantity <= item.alertQuantity) {
+        const isLowStock =
+            item.quantity <= item.alertQuantity;
+
+        if (isLowStock) {
 
             const warning = document.createElement("span");
 
@@ -155,6 +158,10 @@ function renderStockList(){
                 JSON.stringify(shoppingList)
             );
             alert(`${item.name}を買い物リストに追加しました`);
+
+            if (isLowStock) {
+                shoppingButton.classList.add("lowStockShoppingButton");
+            }
         });
 
         const buttonArea = document.createElement("div");

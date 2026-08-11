@@ -233,3 +233,8 @@ main{
     font-size: 13px;
     font-weight: bold;
 }
+
+.lowStockShoppingButton {
+    font-weight: bold;
+    border-width: 2px;
+}
