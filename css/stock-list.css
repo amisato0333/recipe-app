@@ -198,3 +198,29 @@ main{
 .shoppingStockButton:hover{
     background-color: #ffedc9;
 }
+
+.stockInputRow {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.stockInputGroup {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.stockInputGroup input {
+    width: 100%;
+}
+
+@media (max-width: 480px) {
+
+    .stockInputRow {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+}

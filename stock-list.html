@@ -30,21 +30,37 @@
 
     <main>
         <section class="addSection">
-            <label for="stockNameInput">材料名</label>
+            <div class="stockInputRow">
 
-            <input
-                type="text"
-                id="stockNameInput"
-                placeholder="例：卵"
-            >
+                <div class="stockInputGroup">
+                    <label for="stockNameInput">材料名</label>
+                    <input
+                        type="text"
+                        id="stockNameInput"
+                        placeholder="例：卵"
+                    >
+                </div>
 
-            <label for="stockAmountInput">在庫量</label>
+                <div class="stockInputGroup">
+                    <label for="stockQuantityInput">数量</label>
+                    <input
+                        type="number"
+                        id="stockQuantityInput"
+                        min="0"
+                        step="1"
+                        placeholder="例：6"
+                    >
+                </div>
 
-            <input
-                type="text"
-                id="stockAmountInput"
-                placeholder="例：6個"
-            >
+                <div class="stockInputGroup">
+                    <label for="stockUnitInput">単位</label>
+                    <input
+                        type="text"
+                        id="stockUnitInput"
+                        placeholder="例：個"    
+                    >
+                </div>
+            </div>
 
             <button type="button" id="addStockButton">
                 在庫に追加

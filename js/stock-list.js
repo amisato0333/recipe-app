@@ -14,8 +14,11 @@ let stockList =
 const stockNameInput = 
     document.getElementById("stockNameInput");
 
-const stockAmountInput = 
-    document.getElementById("stockAmountInput");
+const stockQuantityInput =
+    document.getElementById("stockQuantityInput");
+
+const stockUnitInput =
+    document.getElementById("stockUnitInput");
 
 const addStockButton = 
     document.getElementById("addStockButton")
@@ -63,7 +66,7 @@ function renderStockList(){
 
         const amount = document.createElement("span");
         amount.classList.add("stockAmount");
-        amount.textContent = item.amount;
+        amount.textContent = `${item.quantity}${item.unit}`;
 
         itemInfo.appendChild(name);
         itemInfo.appendChild(amount);
@@ -98,7 +101,8 @@ function renderStockList(){
 
         editButton.addEventListener("click", () =>{
             stockNameInput.value = item.name;
-            stockAmountInput.value = item.amount;
+            stockQuantityInput.value = item.quantity;
+            stockUnitInput.value = item.unit;
 
             editingIndex = index;
 
@@ -156,22 +160,33 @@ function renderStockList(){
  */
 addStockButton.addEventListener("click", ()=>{
     const name = stockNameInput.value.trim();
-    const amount = stockAmountInput.value.trim();
+    const quantity = Number(stockQuantityInput.value);
+    const unit = stockUnitInput.value.trim();
 
     if(name === ""){
         alert("材料名を入力してください");
         return;
     }
 
-    if(amount === ""){
-        alert("在庫量を入力してください");
+    if(
+        stockQuantityInput.value === "" ||
+        quantity < 0
+    ){
+        alert("数量を正しく入力してください");
         return;
     }
+
+    if(unit === ""){
+        alert("単位を入力してください");
+        return;
+    }
+    
 
     if(editingIndex !== null){
         stockList[editingIndex] = {
             name: name,
-            amount: amount
+            quantity: quantity,
+            unit: unit
         };
 
         editingIndex = null;
@@ -179,7 +194,8 @@ addStockButton.addEventListener("click", ()=>{
     }else{
         stockList.push({
             name: name,
-            amount: amount
+            quantity: quantity,
+            unit: unit
         });
     }
 
@@ -187,7 +203,8 @@ addStockButton.addEventListener("click", ()=>{
     renderStockList();
 
     stockNameInput.value = "";
-    stockAmountInput.value = "";
+    stockQuantityInput.value = "";
+    stockUnitInput.value = "";
 });
 
 renderStockList();
