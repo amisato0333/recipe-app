@@ -20,6 +20,9 @@ const stockQuantityInput =
 const stockUnitInput =
     document.getElementById("stockUnitInput");
 
+const stockAlertInput =
+    document.getElementById("stockAlertInput")
+
 const addStockButton = 
     document.getElementById("addStockButton")
 
@@ -71,6 +74,18 @@ function renderStockList(){
         itemInfo.appendChild(name);
         itemInfo.appendChild(amount);
 
+        if (item.quantity <= item.alertQuantity) {
+
+            const warning = document.createElement("span");
+
+            warning.classList.add("stockWarning");
+
+            warning.textContent =
+                "⚠ 在庫が少なくなっています";
+
+            itemInfo.appendChild(warning);
+        }
+
         const deleteButton = document.createElement("button");
 
         deleteButton.type = "button";
@@ -103,6 +118,7 @@ function renderStockList(){
             stockNameInput.value = item.name;
             stockQuantityInput.value = item.quantity;
             stockUnitInput.value = item.unit;
+            stockAlertInput.value = item.alertQuantity;
 
             editingIndex = index;
 
@@ -162,6 +178,7 @@ addStockButton.addEventListener("click", ()=>{
     const name = stockNameInput.value.trim();
     const quantity = Number(stockQuantityInput.value);
     const unit = stockUnitInput.value.trim();
+    const alertQuantity = Number(stockAlertInput.value);
 
     if(name === ""){
         alert("材料名を入力してください");
@@ -186,7 +203,8 @@ addStockButton.addEventListener("click", ()=>{
         stockList[editingIndex] = {
             name: name,
             quantity: quantity,
-            unit: unit
+            unit: unit,
+            alertQuantity: alertQuantity
         };
 
         editingIndex = null;
@@ -195,8 +213,17 @@ addStockButton.addEventListener("click", ()=>{
         stockList.push({
             name: name,
             quantity: quantity,
-            unit: unit
+            unit: unit,
+            alertQuantity: alertQuantity
         });
+    }
+
+    if (
+    stockAlertInput.value === "" ||
+    alertQuantity < 0
+    ) {
+    alert("警告する数量を正しく入力してください。");
+    return;
     }
 
     saveStockList();
@@ -205,6 +232,7 @@ addStockButton.addEventListener("click", ()=>{
     stockNameInput.value = "";
     stockQuantityInput.value = "";
     stockUnitInput.value = "";
+    stockAlertInput.value = "";
 });
 
 renderStockList();

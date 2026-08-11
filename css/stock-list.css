@@ -224,3 +224,12 @@ main{
     }
 
 }
+
+.stockWarning {
+    margin-top: 4px;
+
+    color: #c65c5c;
+
+    font-size: 13px;
+    font-weight: bold;
+}
