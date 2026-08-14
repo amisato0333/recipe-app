@@ -1,0 +1,111 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+    background-color: #fffaf5;
+    color: #333;
+
+    font-family:
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        sans-serif;
+}
+
+.pageHeader {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 18px 16px;
+
+    background-color: #f5b971;
+}
+
+.pageHeader h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.backButton {
+    position: absolute;
+    left: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 4px;
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.backButton .material-symbols-outlined {
+    font-size: 30px;
+}
+
+main {
+    width: min(92%, 700px);
+    margin: 24px auto;
+}
+
+.suggestIntro {
+    padding: 20px;
+
+    border-radius: 12px;
+    background-color: white;
+
+    box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+}
+
+.suggestIntro h2 {
+    margin-top: 0;
+}
+
+#suggestButton {
+    width: 100%;
+
+    margin-top: 10px;
+    padding: 12px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: #f5b971;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.suggestResult {
+    margin-top: 28px;
+}
+
+.suggestResult h2 {
+    font-size: 20px;
+}
+
+#emptyMessage {
+    padding: 24px;
+
+    border-radius: 12px;
+    background-color: white;
+
+    color: #777;
+    text-align: center;
+}
+
+#suggestList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}

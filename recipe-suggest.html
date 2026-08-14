@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>レシピ提案</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="css/recipe-suggest.css">
+</head>
+
+<body>
+
+    <header class="pageHeader">
+
+        <button type="button" id="backButton" class="backButton">
+            <span class="material-symbols-outlined">
+                arrow_back
+            </span>
+        </button>
+
+        <h1>レシピ提案</h1>
+
+    </header>
+
+    <main>
+
+        <section class="suggestIntro">
+            <h2>今ある材料から探す</h2>
+
+            <p>
+                在庫に登録されている材料から、
+                作れそうなレシピを探します。
+            </p>
+
+            <button type="button" id="suggestButton">
+                レシピを探す
+            </button>
+        </section>
+
+
+        <section class="suggestResult">
+
+            <h2>作れそうなレシピ</h2>
+
+            <p id="emptyMessage">
+                「レシピを探す」を押すと候補が表示されます
+            </p>
+
+            <div id="suggestList"></div>
+
+        </section>
+
+    </main>
+
+    <script src="js/recipe-suggest.js"></script>
+
+</body>
+
+</html>
