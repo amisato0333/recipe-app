@@ -109,3 +109,31 @@ main {
     flex-direction: column;
     gap: 12px;
 }
+
+.suggestCard {
+    padding: 18px;
+
+    border-radius: 12px;
+    background-color: white;
+
+    box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
+}
+
+.suggestCard h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.suggestCard p {
+    margin: 6px 0;
+}
+
+.missingIngredients {
+    color: #777;
+    font-size: 14px;
+}
+
+.completeRecipe {
+    color: #4f8a5b;
+    font-weight: bold;
+}
