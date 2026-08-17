@@ -184,9 +184,7 @@ function findRecipeSuggestions(){
         card.appendChild(title);
         card.appendChild(matchText);
 
-        if(
-            result.missingIngredients.length > 0
-        ){
+        if(result.missingIngredients.length > 0){
             const missingText = 
                 document.createElement("p");
 
@@ -199,6 +197,63 @@ function findRecipeSuggestions(){
                 result.missingIngredients.join("、");
 
             card.appendChild(missingText);
+
+            const addMissingButton = 
+                document.createElement("button");
+
+            addMissingButton.type = "button";
+            addMissingButton.classList.add("addMissingButton");
+            addMissingButton.textContent = 
+                "足りない材料を買い物リストに追加"
+
+            addMissingButton.addEventListener("click", (event) =>{
+                event.stopPropagation();
+
+                let shoppingList = 
+                    JSON.parse(
+                        localStorage.getItem("shoppingList")
+                    ) || [];
+
+                let addedCount = 0;
+
+                result.missingIngredients.forEach((ingredientName) =>{
+
+                    const alreadyExists = 
+                        shoppingList.some((item) =>{
+                            return item.name === ingredientName;
+                        });
+
+                    if(alreadyExists){
+                        return;
+                    }
+
+                    shoppingList.push({
+                        name: ingredientName,
+                        checked: false,
+                        sourceRecipe:
+                            result.recipe.title || "レシピ提案"
+                    });
+
+                    addedCount++;
+                });
+
+                localStorage.setItem(
+                    "shoppingList",
+                    JSON.stringify(shoppingList)
+                );
+
+                if(addedCount === 0){
+                    alert(
+                        "足りない材料はすでに買い物リストに入っています"
+                    );
+                }else{
+                    alert(
+                        `${addedCount}件の材料を追加しました`
+                    );
+                }
+            });
+
+            card.appendChild(addMissingButton);
         }else{
             const completeText = 
                 document.createElement("p");
