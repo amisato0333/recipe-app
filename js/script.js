@@ -88,3 +88,12 @@ if (stockListButton) {
         window.location.href = "stock-list.html";
     });
 }
+
+const recipeSuggestButton =
+    document.getElementById("recipeSuggestButton");
+
+if (recipeSuggestButton) {
+    recipeSuggestButton.addEventListener("click", () => {
+        window.location.href = "recipe-suggest.html";
+    });
+}
