@@ -137,3 +137,13 @@ main {
     color: #4f8a5b;
     font-weight: bold;
 }
+
+.suggestCard {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.suggestCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 12%);
+}

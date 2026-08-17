@@ -10,6 +10,8 @@ const suggestList =
 const emptyMessage = 
     document.getElementById("emptyMessage");
 
+const SUGGEST_STATE_KEY = "recipeSuggestSearched";
+
 if(backButton){
     backButton.addEventListener("click", () =>{
         window.location.href = "index.html";
@@ -147,6 +149,25 @@ function findRecipeSuggestions(){
 
         card.classList.add("suggestCard");
 
+        card.addEventListener("click", () => {
+
+            console.log("カードがクリックされました");
+            console.log(result);
+
+            const recipeId =
+                result.recipe.id ?? result.index;
+
+            console.log("recipeId:", recipeId);
+
+            window.location.href =
+                "recipe-detail.html?id=" +
+                encodeURIComponent(recipeId) +
+                "&from=suggest";
+
+        });
+
+        
+
         const title = 
             document.createElement("h3");
 
@@ -195,6 +216,10 @@ function findRecipeSuggestions(){
         suggestList.appendChild(card);
     });
 
+    sessionStorage.setItem(
+        SUGGEST_STATE_KEY,
+        "true"
+    );
 }
 
 if(suggestButton){
@@ -202,4 +227,11 @@ if(suggestButton){
         "click",
         findRecipeSuggestions
     );
+}
+
+const hasSearched = 
+    sessionStorage.getItem(SUGGEST_STATE_KEY);
+
+if(hasSearched === "true"){
+    findRecipeSuggestions();
 }

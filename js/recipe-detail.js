@@ -528,6 +528,10 @@ function renderRecipe() {
 
     if (fromPage === "photo") {
         backButton.href = "photo-list.html";
+
+    } else if (fromPage === "suggest") {
+        backButton.href = "recipe-suggest.html";
+
     } else {
         backButton.href = "recipe-list.html";
     }
