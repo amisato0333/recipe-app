@@ -132,6 +132,22 @@
             </section>
 
             <!--操作ボタン-->
+            <button id="addMealPlanButton">📅 このレシピを献立に追加</button>
+
+            <div id="mealPlanForm" style="display: none;">
+                <label for="mealPlanDate">日付</label>
+                <input type="date" id="mealPlanDate">
+
+                <label for="mealPlanType">時間帯</label>
+                <select id="mealPlanType">
+                    <option value="朝食">朝食</option>
+                    <option value="昼食">昼食</option>
+                    <option value="夕食">夕食</option>
+                </select>
+
+                <button id="confirmMealPlanButton">献立に追加する</button>
+            </div>
+            
             <div class="action-buttons">
                 <a
                     id="edit-button"

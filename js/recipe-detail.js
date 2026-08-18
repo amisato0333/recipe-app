@@ -646,4 +646,83 @@ function initializeRecipeDetail() {
 
 initializeRecipeDetail();
 
+const addMealPlanButton = document.getElementById("addMealPlanButton");
+const mealPlanForm = document.getElementById("mealPlanForm");
+const mealPlanDate = document.getElementById("mealPlanDate");
+
+const mealPlanType = document.getElementById("mealPlanType");
+const confirmMealPlanButton = document.getElementById("confirmMealPlanButton");
+
+addMealPlanButton.addEventListener("click", () => {
+  mealPlanForm.style.display = "block";
+
+  // 初期値を今日の日付にする
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+
+  mealPlanDate.value = `${year}-${month}-${day}`;
+});
+
+confirmMealPlanButton.addEventListener("click", () => {
+  const selectedDate = mealPlanDate.value;
+  const selectedMealType = mealPlanType.value;
+
+  if (!selectedDate) {
+    alert("日付を選択してください。");
+    return;
+  }
+
+  // URLからレシピIDを取得
+  const params = new URLSearchParams(window.location.search);
+  const recipeId = params.get("id");
+
+  // 保存済みレシピを取得
+  const recipes =
+    JSON.parse(localStorage.getItem("recipes")) || [];
+
+  // 現在開いているレシピを探す
+  const recipe = recipes.find(
+    (recipe) => String(recipe.id) === String(recipeId)
+  );
+
+  if (!recipe) {
+    alert("レシピが見つかりませんでした。");
+    return;
+  }
+
+  // 保存済みの献立を取得
+  const mealPlans =
+    JSON.parse(localStorage.getItem("mealPlans")) || [];
+
+  // 新しい献立データ
+  const newMeal = {
+    id: Date.now(),
+    date: selectedDate,
+    mealType: selectedMealType,
+    time: "",
+    foods: [
+      {
+        type: "recipe",
+        title: recipe.title,
+        recipeId: recipe.id
+      }
+    ]
+  };
+
+  // 献立に追加
+  mealPlans.push(newMeal);
+
+  // localStorageへ保存
+  localStorage.setItem(
+    "mealPlans",
+    JSON.stringify(mealPlans)
+  );
+
+  alert("献立に追加しました！");
+
+  // 入力欄を閉じる
+  mealPlanForm.style.display = "none";
+});
 
