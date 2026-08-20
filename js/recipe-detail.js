@@ -720,9 +720,54 @@ confirmMealPlanButton.addEventListener("click", () => {
     JSON.stringify(mealPlans)
   );
 
-  alert("献立に追加しました！");
+  alert("献立に追加しました");
 
   // 入力欄を閉じる
   mealPlanForm.style.display = "none";
+});
+
+const favoriteButton = document.getElementById("favoriteButton");
+
+const params = new URLSearchParams(window.location.search);
+const currentRecipeId = params.get("id");
+
+let favoriteRecipes =
+  JSON.parse(localStorage.getItem("favoriteRecipes")) || [];
+
+function updateFavoriteButton() {
+  const isFavorite = favoriteRecipes.some(
+    (id) => String(id) === String(currentRecipeId)
+  );
+
+  if (isFavorite) {
+    favoriteButton.textContent = "★ お気に入り済み";
+  } else {
+    favoriteButton.textContent = "☆ お気に入り";
+  }
+}
+
+updateFavoriteButton();
+
+favoriteButton.addEventListener("click", () => {
+  const isFavorite = favoriteRecipes.some(
+    (id) => String(id) === String(currentRecipeId)
+  );
+
+  if (isFavorite) {
+    // お気に入り解除
+    favoriteRecipes = favoriteRecipes.filter(
+      (id) => String(id) !== String(currentRecipeId)
+    );
+  } else {
+    // お気に入り登録
+    favoriteRecipes.push(currentRecipeId);
+  }
+
+  localStorage.setItem(
+    "favoriteRecipes",
+    JSON.stringify(favoriteRecipes)
+  );
+
+  updateFavoriteButton();
 });
 
