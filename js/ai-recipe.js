@@ -94,3 +94,41 @@ loadStockButton.addEventListener("click", () => {
     alert("在庫データの読み込みに失敗しました。");
   }
 });
+
+generateButton.addEventListener("click", () => {
+  if (selectedIngredients.length === 0) {
+    alert("材料を1つ以上入力してください。");
+    return;
+  }
+
+  const prompt = createRecipePrompt(selectedIngredients);
+
+  console.log("AIに送る内容:");
+  console.log(prompt);
+});
+
+
+function createRecipePrompt(ingredients) {
+  const ingredientText = ingredients.join("、");
+
+  return `
+以下の材料を使って作れる料理を1つ提案してください。
+
+【使える材料】
+${ingredientText}
+
+以下の形式で回答してください。
+
+【料理名】
+
+【材料】
+・材料名：分量
+
+【作り方】
+1.
+2.
+3.
+
+【ポイント】
+`;
+}
