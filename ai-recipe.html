@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AIレシピ提案</title>
+
+  <link rel="stylesheet" href="css/ai-recipe.css">
+</head>
+
+<body>
+
+  <header class="page-header">
+    <button
+      type="button"
+      class="back-button"
+      onclick="history.back()"
+      aria-label="戻る"
+    >
+      ←
+    </button>
+
+    <h1>AIレシピ提案</h1>
+  </header>
+
+
+  <main class="container">
+
+    <!-- 材料入力 -->
+    <section class="input-section">
+
+      <h2>使いたい材料</h2>
+
+      <p class="description">
+        家にある材料や使いたい材料を入力してください。
+      </p>
+
+
+      <!-- 在庫から読み込み -->
+      <button
+        type="button"
+        id="loadStockButton"
+        class="stock-button"
+      >
+        在庫から材料を読み込む
+      </button>
+
+
+      <!-- 材料入力 -->
+      <div class="ingredient-input-area">
+
+        <input
+          type="text"
+          id="ingredientInput"
+          placeholder="例：豚肉、キャベツ、卵"
+        >
+
+      </div>
+
+
+      <!-- 読み込んだ材料 -->
+      <div id="ingredientList" class="ingredient-list"></div>
+
+
+      <!-- AIに提案してもらう -->
+      <button
+        type="button"
+        id="generateButton"
+        class="generate-button"
+      >
+        AIにレシピを考えてもらう
+      </button>
+
+    </section>
+
+
+    <!-- AI回答 -->
+    <section class="result-section">
+
+      <h2>AIの提案</h2>
+
+      <div id="loadingMessage" class="loading-message" hidden>
+        レシピを考えています...
+      </div>
+
+      <div id="aiResult" class="ai-result">
+
+        <p class="empty-message">
+          材料を入力すると、AIがレシピを提案します。
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script src="js/ai-recipe.js"></script>
+
+</body>
+</html>

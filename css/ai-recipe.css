@@ -1,0 +1,146 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #fffaf5;
+  color: #333;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: #f8bb6c;
+  border-bottom: 1px solid #e7a85c;
+}
+
+.page-header h1 {
+  flex: 1;
+  margin: 0;
+  text-align: center;
+  font-size: 22px;
+}
+
+.back-button {
+  border: none;
+  background: transparent;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 24px 20px 40px;
+}
+
+.input-section,
+.result-section {
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.input-section h2,
+.result-section h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.description {
+  color: #666;
+  line-height: 1.6;
+}
+
+.stock-button,
+.generate-button {
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.stock-button {
+  margin-top: 10px;
+  background-color: #f3e2cf;
+  color: #333;
+}
+
+.generate-button {
+  margin-top: 18px;
+  background-color: #f8bb6c;
+  color: #222;
+  font-weight: bold;
+}
+
+.stock-button:hover,
+.generate-button:hover {
+  opacity: 0.85;
+}
+
+.ingredient-input-area {
+  margin-top: 16px;
+}
+
+#ingredientInput {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+#ingredientInput:focus {
+  outline: none;
+  border-color: #e8a95d;
+}
+
+.ingredient-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.ingredient-tag {
+  padding: 8px 12px;
+  background-color: #fff0de;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.loading-message {
+  padding: 18px;
+  text-align: center;
+  color: #777;
+}
+
+.ai-result {
+  line-height: 1.7;
+}
+
+.empty-message {
+  margin: 0;
+  color: #888;
+  text-align: center;
+  padding: 24px 10px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 16px;
+  }
+
+  .input-section,
+  .result-section {
+    padding: 16px;
+  }
+
+  .page-header h1 {
+    font-size: 19px;
+  }
+}
