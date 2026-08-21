@@ -219,4 +219,41 @@ function displayAIRecipe(recipe) {
   point.textContent = recipe.point;
 
   aiResult.appendChild(point);
+
+  // ==============================
+  // AIレシピを保存
+  // ==============================
+
+  const saveButton = document.createElement("button");
+
+  saveButton.type = "button";
+  saveButton.textContent = "📖 このレシピを保存";
+  saveButton.className = "save-ai-recipe-button";
+
+  saveButton.addEventListener("click", () => {
+    const savedRecipes =
+        JSON.parse(localStorage.getItem("recipes")) || [];
+
+    const newRecipe = {
+        id: Date.now(),
+        title: recipe.title,
+        titleKana: "",
+        images: [],
+        ingredients: recipe.ingredients,
+        steps: recipe.steps,
+        tag: "なし",
+        createdAt: new Date().toISOString()
+    };
+
+    savedRecipes.push(newRecipe);
+
+    localStorage.setItem(
+        "recipes",
+        JSON.stringify(savedRecipes)
+    );
+
+        alert("レシピを保存しました！");
+    });
+
+  aiResult.appendChild(saveButton);
 }
