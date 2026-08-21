@@ -18,6 +18,10 @@ const DETAIL_PAGE_URL = "recipe-detail.html"
 
 const searchInput = document.getElementById("recipe-search");
 const clearSearchButton = document.getElementById("clear-search-button");
+const favoriteFilterButton =
+  document.getElementById("favoriteFilterButton");
+
+let showFavoritesOnly = false;
 const recipeListElement = document.getElementById("recipe-list");
 const recipeCountElement = document.getElementById("recipe-count");
 const emptyMessageElement = document.getElementById("empty-message");
@@ -53,6 +57,42 @@ function loadRecipes(){
         );
         return [];
     }
+}
+
+function getFavoriteRecipes() {
+  try {
+    const savedFavorites =
+      localStorage.getItem("favoriteRecipes");
+
+    return savedFavorites
+      ? JSON.parse(savedFavorites)
+      : [];
+  } catch (error) {
+    console.error(
+      "お気に入りデータの読み込みに失敗しました。",
+      error
+    );
+
+    return [];
+  }
+}
+
+function getRecipesToDisplay() {
+  if (!showFavoritesOnly) {
+    return recipes;
+  }
+
+  const favoriteRecipes = getFavoriteRecipes();
+
+  return recipes.filter((recipe, index) => {
+    const recipeId =
+      getRecipeIdentifier(recipe, index);
+
+    return favoriteRecipes.some(
+      (favoriteId) =>
+        String(favoriteId) === String(recipeId)
+    );
+  });
 }
 
 /**
@@ -329,8 +369,10 @@ function searchRecipes() {
         isSearching
     );
 
+    const recipesToDisplay = getRecipesToDisplay();
+
     if (!isSearching) {
-        renderRecipes(recipes, false);
+        renderRecipes(recipesToDisplay, false);
         return;
     }
 
@@ -350,6 +392,20 @@ function initializeRecipeList() {
     recipes = loadRecipes();
 
     renderRecipes(recipes);
+
+    favoriteFilterButton.addEventListener("click", () => {
+        showFavoritesOnly = !showFavoritesOnly;
+
+        if (showFavoritesOnly) {
+            favoriteFilterButton.textContent =
+                "📖 すべてのレシピ";
+        } else {
+            favoriteFilterButton.textContent =
+                "⭐ お気に入り";
+        }
+
+        searchRecipes();
+    });
 
     searchInput.addEventListener("input", searchRecipes);
 
