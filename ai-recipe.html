@@ -92,6 +92,38 @@
 
       </div>
 
+      <!-- AIレシピ操作 -->
+      <div id="aiRecipeActions" class="ai-recipe-actions" hidden>
+
+        <button type="button" id="saveAiRecipeButton">
+            📖 このレシピを保存
+        </button>
+
+        <button type="button" id="addAiMealPlanButton">
+            📅 献立に追加
+        </button>
+
+        <!-- 献立追加フォーム -->
+        <div id="aiMealPlanForm" style="display: none;">
+
+            <label for="aiMealPlanDate">日付</label>
+            <input type="date" id="aiMealPlanDate">
+
+            <label for="aiMealPlanType">時間帯</label>
+            <select id="aiMealPlanType">
+                <option value="朝食">朝食</option>
+                <option value="昼食">昼食</option>
+                <option value="夕食">夕食</option>
+            </select>
+
+            <button type="button" id="confirmAiMealPlanButton">
+                献立に追加する
+            </button>
+
+        </div>
+
+    </div>
+
     </section>
 
   </main>
