@@ -4,8 +4,17 @@ const ingredientList = document.getElementById("ingredientList");
 const generateButton = document.getElementById("generateButton");
 const loadingMessage = document.getElementById("loadingMessage");
 const aiResult = document.getElementById("aiResult");
+const aiRecipeActions = document.getElementById("aiRecipeActions");
+const saveAiRecipeButton = document.getElementById("saveAiRecipeButton");
+const addAiMealPlanButton = document.getElementById("addAiMealPlanButton");
+const aiMealPlanForm = document.getElementById("aiMealPlanForm");
+const aiMealPlanDate = document.getElementById("aiMealPlanDate");
+const aiMealPlanType = document.getElementById("aiMealPlanType");
+const confirmAiMealPlanButton = document.getElementById("confirmAiMealPlanButton");
 
 let selectedIngredients = [];
+
+let currentAiRecipe = null;
 
 function renderIngredients() {
   ingredientList.innerHTML = "";
@@ -171,6 +180,8 @@ function createMockRecipe(ingredients) {
 }
 
 function displayAIRecipe(recipe) {
+  currentAiRecipe = recipe;
+
   aiResult.innerHTML = "";
 
   const title = document.createElement("h3");
@@ -220,27 +231,27 @@ function displayAIRecipe(recipe) {
 
   aiResult.appendChild(point);
 
-  // ==============================
-  // AIレシピを保存
-  // ==============================
+  aiRecipeActions.hidden = false;
 
-  const saveButton = document.createElement("button");
+}
 
-  saveButton.type = "button";
-  saveButton.textContent = "📖 このレシピを保存";
-  saveButton.className = "save-ai-recipe-button";
+saveAiRecipeButton.addEventListener("click", () => {
 
-  saveButton.addEventListener("click", () => {
+    if (!currentAiRecipe) {
+        alert("保存するレシピがありません。");
+        return;
+    }
+
     const savedRecipes =
         JSON.parse(localStorage.getItem("recipes")) || [];
 
     const newRecipe = {
         id: Date.now(),
-        title: recipe.title,
+        title: currentAiRecipe.title,
         titleKana: "",
         images: [],
-        ingredients: recipe.ingredients,
-        steps: recipe.steps,
+        ingredients: currentAiRecipe.ingredients,
+        steps: currentAiRecipe.steps,
         tag: "なし",
         createdAt: new Date().toISOString()
     };
@@ -252,8 +263,5 @@ function displayAIRecipe(recipe) {
         JSON.stringify(savedRecipes)
     );
 
-        alert("レシピを保存しました！");
-    });
-
-  aiResult.appendChild(saveButton);
-}
+    alert("レシピを保存しました！");
+});
