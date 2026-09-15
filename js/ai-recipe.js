@@ -15,6 +15,7 @@ const confirmAiMealPlanButton = document.getElementById("confirmAiMealPlanButton
 let selectedIngredients = [];
 
 let currentAiRecipe = null;
+let savedAiRecipeId = null;
 
 function renderIngredients() {
   ingredientList.innerHTML = "";
@@ -237,31 +238,138 @@ function displayAIRecipe(recipe) {
 
 saveAiRecipeButton.addEventListener("click", () => {
 
-    if (!currentAiRecipe) {
-        alert("保存するレシピがありません。");
-        return;
-    }
+  if (!currentAiRecipe) {
+    alert("保存するレシピがありません。");
+    return;
+  }
+
+  const savedRecipes =
+    JSON.parse(localStorage.getItem("recipes")) || [];
+
+  const recipeId = Date.now();
+
+  const newRecipe = {
+    id: recipeId,
+    title: currentAiRecipe.title,
+    titleKana: "",
+    images: [],
+    ingredients: currentAiRecipe.ingredients,
+    steps: currentAiRecipe.steps,
+    tag: "なし",
+    createdAt: new Date().toISOString()
+  };
+
+  savedRecipes.push(newRecipe);
+
+  localStorage.setItem(
+    "recipes",
+    JSON.stringify(savedRecipes)
+  );
+
+  savedAiRecipeId = recipeId;
+
+  alert("レシピを保存しました！");
+});
+
+addAiMealPlanButton.addEventListener("click", () => {
+  console.log("献立に追加ボタンが押されました");
+
+  aiMealPlanForm.style.display = "block";
+
+  const today = new Date();
+
+  const year = today.getFullYear();
+
+  const month = String(
+    today.getMonth() + 1
+  ).padStart(2, "0");
+
+  const day = String(
+    today.getDate()
+  ).padStart(2, "0");
+
+  aiMealPlanDate.value =
+    `${year}-${month}-${day}`;
+
+  console.log("献立フォームを表示しました");
+});
+
+confirmAiMealPlanButton.addEventListener("click", () => {
+
+  if (!currentAiRecipe) {
+    alert("献立に追加するレシピがありません。");
+    return;
+  }
+
+  const selectedDate = aiMealPlanDate.value;
+  const selectedMealType = aiMealPlanType.value;
+
+  if (!selectedDate) {
+    alert("日付を選択してください。");
+    return;
+  }
+
+  // ===================================
+  // AIレシピが未保存の場合だけ保存する
+  // ===================================
+
+  let recipeId = savedAiRecipeId;
+
+  if (recipeId === null) {
 
     const savedRecipes =
-        JSON.parse(localStorage.getItem("recipes")) || [];
+      JSON.parse(localStorage.getItem("recipes")) || [];
+
+    recipeId = Date.now();
 
     const newRecipe = {
-        id: Date.now(),
-        title: currentAiRecipe.title,
-        titleKana: "",
-        images: [],
-        ingredients: currentAiRecipe.ingredients,
-        steps: currentAiRecipe.steps,
-        tag: "なし",
-        createdAt: new Date().toISOString()
+      id: recipeId,
+      title: currentAiRecipe.title,
+      titleKana: "",
+      images: [],
+      ingredients: currentAiRecipe.ingredients,
+      steps: currentAiRecipe.steps,
+      tag: "なし",
+      createdAt: new Date().toISOString()
     };
 
     savedRecipes.push(newRecipe);
 
     localStorage.setItem(
-        "recipes",
-        JSON.stringify(savedRecipes)
+      "recipes",
+      JSON.stringify(savedRecipes)
     );
 
-    alert("レシピを保存しました！");
+    // 保存したIDを覚えておく
+    savedAiRecipeId = recipeId;
+  }
+
+  // 献立に追加する
+  const mealPlans =
+    JSON.parse(localStorage.getItem("mealPlans")) || [];
+
+  const newMeal = {
+    id: Date.now() + 1,
+    date: selectedDate,
+    mealType: selectedMealType,
+    time: "",
+    foods: [
+      {
+        type: "recipe",
+        title: currentAiRecipe.title,
+        recipeId: recipeId
+      }
+    ]
+  };
+
+  mealPlans.push(newMeal);
+
+  localStorage.setItem(
+    "mealPlans",
+    JSON.stringify(mealPlans)
+  );
+
+  alert("献立に追加しました！");
+
+  aiMealPlanForm.style.display = "none";
 });
