@@ -107,30 +107,68 @@ loadStockButton.addEventListener("click", () => {
   }
 });
 
-generateButton.addEventListener("click", () => {
+generateButton.addEventListener("click", async () => {
+  addIngredientsFromInput();
+
   if (selectedIngredients.length === 0) {
     alert("材料を1つ以上入力してください。");
     return;
   }
 
-  // 将来AIに送るプロンプト
-  const prompt = createRecipePrompt(selectedIngredients);
-
-  console.log("AIに送る内容:");
-  console.log(prompt);
-
-  // 読み込み表示
   loadingMessage.hidden = false;
   aiResult.innerHTML = "";
+  aiRecipeActions.hidden = true;
 
-  // 今はAI APIを使わないため、仮の回答を表示
-  setTimeout(() => {
-    const mockRecipe = createMockRecipe(selectedIngredients);
+  try {
+    const response = await fetch(
+      "https://recipe-gemini-api.zuotengyahai177.workers.dev/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          ingredients: selectedIngredients
+        })
+      }
+    );
 
-    displayAIRecipe(mockRecipe);
+    const data = await response.json();
 
+    if (!response.ok) {
+      console.error("Workerエラー:", data);
+      throw new Error(
+        data.details ||
+        data.error ||
+        "AIからレシピを取得できませんでした。"
+      );
+    }
+
+    console.log("AIから返ってきたデータ:", data);
+
+    const recipes = data.recipes;
+
+    if (!Array.isArray(recipes) || recipes.length === 0) {
+      throw new Error("レシピデータがありません。");
+    }
+
+    console.log("生成されたレシピ:", recipes);
+    console.log("1品目の材料データ:", recipes[0].ingredients);
+
+    displayAIRecipe(recipes[0]);
+
+  } catch (error) {
+    console.error("AIレシピ生成エラー:", error);
+
+    aiResult.innerHTML = `
+            <p class="error-message">
+                レシピの生成に失敗しました。<br>
+                ${error.message}
+            </p>
+        `;
+  } finally {
     loadingMessage.hidden = true;
-  }, 800);
+  }
 });
 
 
@@ -198,8 +236,7 @@ function displayAIRecipe(recipe) {
   recipe.ingredients.forEach((ingredient) => {
     const li = document.createElement("li");
 
-    li.textContent =
-      `${ingredient.name}：${ingredient.amount}`;
+    li.textContent = ingredient;
 
     ingredientList.appendChild(li);
   });
