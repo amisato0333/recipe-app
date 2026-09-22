@@ -4,9 +4,6 @@ const ingredientList = document.getElementById("ingredientList");
 const generateButton = document.getElementById("generateButton");
 const loadingMessage = document.getElementById("loadingMessage");
 const aiResult = document.getElementById("aiResult");
-const aiRecipeActions = document.getElementById("aiRecipeActions");
-const saveAiRecipeButton = document.getElementById("saveAiRecipeButton");
-const addAiMealPlanButton = document.getElementById("addAiMealPlanButton");
 const aiMealPlanForm = document.getElementById("aiMealPlanForm");
 const aiMealPlanDate = document.getElementById("aiMealPlanDate");
 const aiMealPlanType = document.getElementById("aiMealPlanType");
@@ -117,7 +114,6 @@ generateButton.addEventListener("click", async () => {
 
   loadingMessage.hidden = false;
   aiResult.innerHTML = "";
-  aiRecipeActions.hidden = true;
 
   try {
     const response = await fetch(
@@ -155,17 +151,21 @@ generateButton.addEventListener("click", async () => {
     console.log("生成されたレシピ:", recipes);
     console.log("1品目の材料データ:", recipes[0].ingredients);
 
-    displayAIRecipe(recipes[0]);
+    aiResult.innerHTML = "";
+
+    recipes.forEach((recipe) => {
+      displayAIRecipe(recipe);
+    });
 
   } catch (error) {
     console.error("AIレシピ生成エラー:", error);
 
     aiResult.innerHTML = `
-            <p class="error-message">
-                レシピの生成に失敗しました。<br>
-                ${error.message}
-            </p>
-        `;
+      <p class="error-message">
+        レシピの生成に失敗しました。<br>
+        少し時間をおいて、もう一度お試しください。
+      </p>
+    `;
   } finally {
     loadingMessage.hidden = true;
   }
@@ -221,15 +221,16 @@ function createMockRecipe(ingredients) {
 function displayAIRecipe(recipe) {
   currentAiRecipe = recipe;
 
-  aiResult.innerHTML = "";
+  const recipeCard = document.createElement("div");
+  recipeCard.className = "ai-recipe-card";
 
   const title = document.createElement("h3");
   title.textContent = recipe.title;
-  aiResult.appendChild(title);
+  recipeCard.appendChild(title);
 
   const ingredientHeading = document.createElement("h4");
   ingredientHeading.textContent = "材料";
-  aiResult.appendChild(ingredientHeading);
+  recipeCard.appendChild(ingredientHeading);
 
   const ingredientList = document.createElement("ul");
 
@@ -241,12 +242,12 @@ function displayAIRecipe(recipe) {
     ingredientList.appendChild(li);
   });
 
-  aiResult.appendChild(ingredientList);
+  recipeCard.appendChild(ingredientList);
 
 
   const stepHeading = document.createElement("h4");
   stepHeading.textContent = "作り方";
-  aiResult.appendChild(stepHeading);
+  recipeCard.appendChild(stepHeading);
 
   const stepList = document.createElement("ol");
 
@@ -257,79 +258,88 @@ function displayAIRecipe(recipe) {
     stepList.appendChild(li);
   });
 
-  aiResult.appendChild(stepList);
+  recipeCard.appendChild(stepList);
 
 
   const pointHeading = document.createElement("h4");
   pointHeading.textContent = "ポイント";
-  aiResult.appendChild(pointHeading);
+  recipeCard.appendChild(pointHeading);
 
   const point = document.createElement("p");
   point.textContent = recipe.point;
 
-  aiResult.appendChild(point);
+  recipeCard.appendChild(point);
 
-  aiRecipeActions.hidden = false;
+  // このレシピを保存ボタン
+  const saveButton = document.createElement("button");
+  saveButton.textContent = "💾 このレシピを保存";
+  saveButton.className = "ai-recipe-save-button";
+
+  saveButton.addEventListener("click", () => {
+    const savedRecipes =
+      JSON.parse(localStorage.getItem("recipes")) || [];
+
+    const recipeId = Date.now();
+
+    const newRecipe = {
+      id: recipeId,
+      title: recipe.title,
+      titleKana: "",
+      images: [],
+      ingredients: recipe.ingredients,
+      steps: recipe.steps,
+      tag: "なし",
+      createdAt: new Date().toISOString()
+    };
+
+    savedRecipes.push(newRecipe);
+
+    localStorage.setItem(
+      "recipes",
+      JSON.stringify(savedRecipes)
+    );
+
+    alert(`「${recipe.title}」を保存しました！`);
+  });
+
+  recipeCard.appendChild(saveButton);
+
+  // このレシピを献立に追加ボタン
+  const mealPlanButton = document.createElement("button");
+  mealPlanButton.textContent = "📅 献立に追加";
+  mealPlanButton.className = "ai-meal-plan-button";
+
+  mealPlanButton.addEventListener("click", () => {
+    // どのレシピのボタンを押したか覚えておく
+    currentAiRecipe = recipe;
+
+    // 押したレシピのすぐ下へフォームを移動
+    recipeCard.appendChild(aiMealPlanForm);
+
+    // 献立入力フォームを表示
+    aiMealPlanForm.style.display = "block";
+
+    // 今日の日付を初期値にする
+    const today = new Date();
+
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+
+    aiMealPlanDate.value = `${year}-${month}-${day}`;
+
+    // フォームまでスクロール
+    aiMealPlanForm.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  });
+
+  recipeCard.appendChild(mealPlanButton);
+
+  aiResult.appendChild(recipeCard);
 
 }
-
-saveAiRecipeButton.addEventListener("click", () => {
-
-  if (!currentAiRecipe) {
-    alert("保存するレシピがありません。");
-    return;
-  }
-
-  const savedRecipes =
-    JSON.parse(localStorage.getItem("recipes")) || [];
-
-  const recipeId = Date.now();
-
-  const newRecipe = {
-    id: recipeId,
-    title: currentAiRecipe.title,
-    titleKana: "",
-    images: [],
-    ingredients: currentAiRecipe.ingredients,
-    steps: currentAiRecipe.steps,
-    tag: "なし",
-    createdAt: new Date().toISOString()
-  };
-
-  savedRecipes.push(newRecipe);
-
-  localStorage.setItem(
-    "recipes",
-    JSON.stringify(savedRecipes)
-  );
-
-  savedAiRecipeId = recipeId;
-
-  alert("レシピを保存しました！");
-});
-
-addAiMealPlanButton.addEventListener("click", () => {
-  console.log("献立に追加ボタンが押されました");
-
-  aiMealPlanForm.style.display = "block";
-
-  const today = new Date();
-
-  const year = today.getFullYear();
-
-  const month = String(
-    today.getMonth() + 1
-  ).padStart(2, "0");
-
-  const day = String(
-    today.getDate()
-  ).padStart(2, "0");
-
-  aiMealPlanDate.value =
-    `${year}-${month}-${day}`;
-
-  console.log("献立フォームを表示しました");
-});
 
 confirmAiMealPlanButton.addEventListener("click", () => {
 
@@ -350,7 +360,7 @@ confirmAiMealPlanButton.addEventListener("click", () => {
   // AIレシピが未保存の場合だけ保存する
   // ===================================
 
-  let recipeId = savedAiRecipeId;
+  let recipeId = currentAiRecipe.savedRecipeId ?? null;
 
   if (recipeId === null) {
 
@@ -378,7 +388,7 @@ confirmAiMealPlanButton.addEventListener("click", () => {
     );
 
     // 保存したIDを覚えておく
-    savedAiRecipeId = recipeId;
+    currentAiRecipe.savedRecipeId = recipeId;
   }
 
   // 献立に追加する
