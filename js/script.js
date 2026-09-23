@@ -97,3 +97,12 @@ if (recipeSuggestButton) {
         window.location.href = "recipe-suggest.html";
     });
 }
+
+const aiRecipeButton =
+  document.getElementById("aiRecipeButton");
+
+if (aiRecipeButton) {
+  aiRecipeButton.addEventListener("click", () => {
+    window.location.href = "ai-recipe.html";
+  });
+}
